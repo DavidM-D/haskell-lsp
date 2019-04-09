@@ -86,6 +86,7 @@ executable lsp-hello
                      , vector
                      -- the package library. Comment this out if you want repl changes to propagate
                      , haskell-lsp
+                     , haskell-lsp-types >= 0.8
 
 test-suite haskell-lsp-test
   type:                exitcode-stdio-1.0
