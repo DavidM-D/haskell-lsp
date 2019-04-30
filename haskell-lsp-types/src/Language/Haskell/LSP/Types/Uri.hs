@@ -60,8 +60,8 @@ platformAdjustToUriPath :: SystemOS -> FilePath -> String
 platformAdjustToUriPath systemOS srcPath =
   if systemOS /= windowsOS then srcPath
     else let
-      drive:rest = FPW.splitDirectories srcPath
+      (drive,rest) = FPW.splitDrive srcPath
       leaveCharUnescaped = (/= ':')
       removePathSeparator = filter (not . FPW.isPathSeparator)
       escapedDrive = removePathSeparator $ escapeURIString leaveCharUnescaped drive
-      in '/' : FPP.joinPath (escapedDrive : rest)
+      in '/' : FPP.joinPath [escapedDrive,  rest]
